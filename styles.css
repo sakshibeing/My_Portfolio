@@ -34,6 +34,7 @@ a {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 0.8rem 2rem;
   z-index: 1000;
+  flex-wrap: wrap; /* allow wrapping on small screens */
 }
 
 .logo {
@@ -69,6 +70,7 @@ a {
   height: 100vh;
   overflow: hidden;
   margin-top: 3.5rem;
+  flex-wrap: wrap; /* allows responsive stacking */
 }
 
 .hero-left,
@@ -77,6 +79,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 40vh;
 }
 
 .hero-left {
@@ -92,13 +95,14 @@ a {
   font-size: 4rem;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .hero-text.coder {
   color: #fff;
 }
 
-/* 🔹 Center section (text + button) */
+/* Center section (text + button) */
 .hero-center {
   position: absolute;
   top: 50%;
@@ -110,22 +114,6 @@ a {
   max-width: 600px;
 }
 
-/* 🔹 Profile image (HIDDEN NOW) */
-.hero-img {
-  display: none; /* ✅ removes the circle completely */
-}
-
-.intro {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.intro span {
-  color: #0077b6;
-  font-weight: 600;
-}
-
 .btn-primary {
   display: inline-block;
   padding: 0.6rem 1.2rem;
@@ -134,6 +122,7 @@ a {
   border-radius: 25px;
   transition: 0.3s;
   font-weight: 600;
+  margin-top: 1rem;
 }
 
 .btn-primary:hover {
@@ -149,6 +138,7 @@ a {
 .container {
   max-width: 1000px;
   margin: auto;
+  padding: 0 1rem;
 }
 
 h2 {
@@ -185,7 +175,7 @@ h2::after {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
@@ -228,13 +218,17 @@ h2::after {
 /* ===== CONTACT ===== */
 .contact-links {
   margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .contact-links a {
   display: inline-block;
-  margin: 0.4rem 1rem;
   color: #0077b6;
   font-weight: 600;
+  transition: 0.3s;
 }
 
 .contact-links a:hover {
@@ -250,7 +244,19 @@ footer {
   font-size: 0.95rem;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .hero-text {
+    font-size: 3rem;
+  }
+  .project-card img {
+    height: 160px;
+  }
+}
+
+/* Mobile Phones */
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
@@ -259,11 +265,13 @@ footer {
 
   .hero-left,
   .hero-right {
-    height: 40vh;
+    width: 100%;
+    height: auto;
+    padding: 2rem 0;
   }
 
   .hero-text {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .hero-center {
@@ -271,6 +279,35 @@ footer {
     transform: none;
     top: auto;
     left: auto;
-    margin-top: -2rem;
+    margin: 1rem 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-links {
+    flex-direction: column;
+  }
+}
+
+/* Very small devices (phones < 400px) */
+@media (max-width: 400px) {
+  .hero-text {
+    font-size: 1.8rem;
+  }
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  h2 {
+    font-size: 1.5rem;
   }
 }
